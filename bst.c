@@ -75,5 +75,5 @@ void insert_tree(tree **l , int x , tree *parent){
 }
 
 int main(){
-
+    printf("akjdna");
 }
