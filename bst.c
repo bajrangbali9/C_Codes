@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "C:/Users/priya/Desktop/code/list.h"
 typedef struct tree{
     int item;
     struct tree *parent;
@@ -76,7 +75,5 @@ void insert_tree(tree **l , int x , tree *parent){
 }
 
 int main(){
-    list * p= malloc (sizeof(list));
-    p->item=56;
-    return 0;
+
 }
