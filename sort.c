@@ -153,4 +153,20 @@ int heap_compare(priority_queue *q, int i, int count, int x)
     return (count);
 }
 
-void merge_sort(int *s,int low)
+void merge(int *s,int low,int mid,int high){
+    int i;
+    
+}
+void merge_sort(int *s, int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+        merge_sort(s, low, mid);
+        merge_sort(s, mid + 1, high);
+
+        merge(s, low, mid, high);
+    }
+}
+
