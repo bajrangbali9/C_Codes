@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "_queue.h"
-#define PQ_SIZE __INT_MAX__
+#define PQ_SIZE 100
 // qsort(int *a,n,sizeof(int),intcompare);
+void swap(int *i, int *j)
+{
+    int tmp = *i;
+    *i = *j;
+    *j = tmp;
+}
 int intcompare(int *i, int *j)
 {
     if (*i > *j)
@@ -196,5 +202,34 @@ void merge_sort(int *s, int low, int high)
         merge_sort(s, mid + 1, high);
 
         merge(s, low, mid, high);
+    }
+}
+
+int partition(int *s, int l, int h)
+{
+    int i;
+    int p;
+    int fst_ht;
+    p = h;
+    fst_ht = l;
+    for (i = l; i < h; i++)
+    {
+        if (s[i] < s[p])
+        {
+            swap(s + i, s + fst_ht);
+        }
+    }
+    swap(s + p, s + fst_ht);
+    return (fst_ht);
+}
+
+void quicksort(int *s, int l, int h)
+{
+    int p;
+    if (l < h)
+    {
+        p = partition(s, l, h);
+        quicksort(s, l, p - 1);
+        quicksort(s, p + 1, h);
     }
 }
