@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "_queue.h"
-#define PQ_SIZE 10
+#define PQ_SIZE __INT_MAX__
 // qsort(int *a,n,sizeof(int),intcompare);
 int intcompare(int *i, int *j)
 {
@@ -185,6 +185,7 @@ void merge(int *s, int low, int mid, int high)
         s[i++] = dequeue(&bf2);
     }
 }
+
 void merge_sort(int *s, int low, int high)
 {
     int mid;
