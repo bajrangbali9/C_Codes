@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "_queue.h"
 #define PQ_SIZE 10
 // qsort(int *a,n,sizeof(int),intcompare);
 int intcompare(int *i, int *j)
@@ -153,9 +154,36 @@ int heap_compare(priority_queue *q, int i, int count, int x)
     return (count);
 }
 
-void merge(int *s,int low,int mid,int high){
+void merge(int *s, int low, int mid, int high)
+{
     int i;
-    
+    queue bf1, bf2;
+    init_queue(&bf1);
+    init_queue(&bf2);
+    for (i = low; i <= mid; i++)
+        enqueue(&bf1, s[i]);
+    for (i = mid + 1; i <= high; i++)
+        enqueue(&bf2, s[i]);
+    i = low;
+    while (!(empty_queue(&bf1) || empty_queue(&bf2)))
+    {
+        if (headq(&bf1) <= headq(&bf2))
+        {
+            s[i++] = dequeue(&bf1);
+        }
+        else
+        {
+            s[i++] = dequeue(&bf2);
+        }
+    }
+    while (!empty_queue(&bf1))
+    {
+        s[i++] = dequeue(&bf1);
+    }
+    while (!empty_queue(&bf2))
+    {
+        s[i++] = dequeue(&bf2);
+    }
 }
 void merge_sort(int *s, int low, int high)
 {
@@ -169,4 +197,3 @@ void merge_sort(int *s, int low, int high)
         merge(s, low, mid, high);
     }
 }
-
