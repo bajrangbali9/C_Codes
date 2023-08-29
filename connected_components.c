@@ -1,14 +1,8 @@
 #include "_queue.h"
 #include "_graph.h"
-
 bool processed[MAXV+1];
 bool discovered[MAXV+1];
 int parent[MAXV+1];
-// typedef enum{
-//     disc,
-//     undisc,
-//     procd
-// } stat;
 void init_search(graph *g){
     int i;
     for(i=0;i<=g->nvertices;i++){
@@ -17,8 +11,9 @@ void init_search(graph *g){
         parent[i]=-1;
     }
 }
-void process_vertex_early(int v){
 
+void process_vertex_early(int v){
+    printf("%d",v);
 }
 void process_vertex_late(int v){
 
@@ -55,12 +50,18 @@ void bfs(graph *g,int st){
         }
 }
 
-void find_path(int st,int end,int parents[]){
-    if((st==end) || (end==-1)){
-        printf("%d\n",st);
-    }
-    else{
-        find_path(st,parent[end],parents);
-        printf("%d\n",end);
+
+void connected_components(graph *g){
+    int c; // component number
+    int i;
+    init_search(g);
+    c=0;
+    for(i=1;i<=g->nvertices;i++){
+        if(!discovered[i]){
+            c=c+1;
+            printf("Component %d",c);
+            bfs(g,i);
+            printf("/n");
+        }
     }
 }

@@ -17,15 +17,9 @@ void init_search(graph *g){
         parent[i]=-1;
     }
 }
-void process_vertex_early(int v){
-
-}
-void process_vertex_late(int v){
-
-}
-void process_edge(int x,int y){
-    
-}
+void process_vertex_early(int v);
+void process_vertex_late(int v);
+void process_edge(int x,int y);
 void bfs(graph *g,int st){
         queue q; // queue of vertex to visit
         int v; //curr. vertex
